@@ -1,0 +1,24 @@
+name: Mirror Repository
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  Push:
+    runs-on: ubuntu-latest
+    if: github.repository == 'benoista/POPEYE'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Mirror to Epitech repository
+        uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url:
+            git@github.com:EpitechMscProPromo2027/T-DOP-601-NAN_alexandre-benoist.git
+          ssh_private_key:
+            ${{ secrets.SSH_SECRET }}
