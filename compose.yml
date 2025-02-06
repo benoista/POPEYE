@@ -34,6 +34,7 @@ services:
       - db
     env_file:
       - .env
+    restart: always
 
   redis:
     image: "redis:alpine"
@@ -42,6 +43,7 @@ services:
     networks:
         - poll-tier
         - back-tier
+    restart: always
 
   db:
     image: "postgres:alpine"
@@ -55,6 +57,7 @@ services:
     networks:
         - back-tier
         - result-tier
+    restart: always
 volumes:
   db-data:
 
